@@ -1,0 +1,8 @@
+python train-qwen.py 
+Sliding Window Attention is enabled but not implemented for `sdpa`; unexpected results may be encountered.
+Map: 100%|███████████████████████████████████████████████████████| 25713/25713 [00:14<00:00, 1722.41 examples/s]
+  0%|                                                                                 | 0/77139 [00:00<?, ?it/s]D:\repo-id\Qwen2.5-Coder-1.5B-Instruct_train\.venv\Lib\site-packages\torch\utils\data\dataloader.py:665: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.   
+  warnings.warn(warn_msg)
+Segmentation fault
+
+(Due to memory)

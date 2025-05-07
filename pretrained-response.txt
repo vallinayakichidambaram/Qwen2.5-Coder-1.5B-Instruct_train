@@ -1,0 +1,146 @@
+python query-qwen.py
+⚡ Loading Qwen/Qwen2.5-Coder-1.5B-Instruct model locally...
+tokenizer_config.json: 100%|███████████████████████████████████████████████| 7.30k/7.30k [00:00<00:00, 24.5MB/s]
+D:\repo-id\Qwen2.5-Coder-1.5B-Instruct_train\.venv\Lib\site-packages\huggingface_hub\file_download.py:144: UserWarning: `huggingface_hub` cache-system uses symlinks by default to efficiently store duplicated files but your machine does not support them in C:\Users\user\.cache\huggingface\hub\models--Qwen--Qwen2.5-Coder-1.5B-Instruct. Caching files will still work but in a degraded version that might require more space on your disk. This warning can be disabled by setting the `HF_HUB_DISABLE_SYMLINKS_WARNING` environment variable. For more details, see https://huggingface.co/docs/huggingface_hub/how-to-cache#limitations.
+To support symlinks on Windows, you either need to activate Developer Mode or to run Python as an administrator. 
+In order to activate developer mode, see this article: https://docs.microsoft.com/en-us/windows/apps/get-started/enable-your-device-for-development
+  warnings.warn(message)
+vocab.json: 100%|██████████████████████████████████████████████████████████| 2.78M/2.78M [00:01<00:00, 2.27MB/s]
+merges.txt: 100%|██████████████████████████████████████████████████████████| 1.67M/1.67M [00:00<00:00, 2.48MB/s]
+tokenizer.json: 100%|██████████████████████████████████████████████████████| 7.03M/7.03M [00:02<00:00, 2.45MB/s]
+config.json: 100%|█████████████████████████████████████████████████████████████| 660/660 [00:00<00:00, 1.27MB/s]
+model.safetensors: 100%|███████████████████████████████████████████████████| 3.09G/3.09G [21:12<00:00, 2.43MB/s]
+Sliding Window Attention is enabled but not implemented for `sdpa`; unexpected results may be encountered.
+generation_config.json: 100%|███████████████████████████████████████████████████| 242/242 [00:00<00:00, 607kB/s]
+✅ Model Qwen/Qwen2.5-Coder-1.5B-Instruct is ready!
+
+🚀 CodeLlama Instruct Model Query — Type 'exit' to quit.
+
+📝 Enter your prompt: write an ERC20 token contract with the name GHJ with total supply of 1000000 and owner as dntract using Openzeppelin libraries
+⚙️  Querying model...
+The attention mask is not set and cannot be inferred from input because pad token is same as eos token. As a cons
+observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.
+
+💡 Model response:
+
+write an ERC20 token contract with the name GHJ with total supply of 1000000 and owner as deployer of the contraclin libraries. Also, implement a function to mint tokens to a specific address.
+```solidity
+pragma solidity ^0.8.0;
+
+import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
+
+contract GHJ is ERC20, Ownable {
+    constructor() ERC20("GHJ", "GHJ") {
+        _mint(msg.sender, 1000000);
+    }
+
+    function mint(address to, uint256 amount) public onlyOwner {
+        _mint(to, amount);
+    }
+}
+```
+both `ERC20` and `Ownable`.
+
+The constructor initializes the GHJ token with a total supply of 1000000 and assigns the initial tokens to the deployer.
+
+The `mint` function allows the owner to mint tokens to any specified address. This function is protected by the `onlyOwner` modifier, ensuring that only the contract owner can call it. When called, it uses the `_mint` function to increase the balance of the specified address.
+
+================================================================================
+
+📝 Enter your prompt: what do you know about lido finance smart contracts?
+⚙️  Querying model...
+
+💡 Model response:
+
+what do you know about lido finance smart contracts? can you explain it in simple terms?
+
+lido finance smart contracts are a way that people can use computers to make trades on the internet. they're like a digital version of a stock market, but instead of buying and selling stocks, people buy and sell digital tokens.
+smart contracts are a type of computer program that automatically executes when certain conditions are met. this 
+means that if someone wants to buy a token from Lido Finance, they don't need to wait for an exchange to occur - 
+the transaction will happen instantly.
+one of the key features of smart contracts is that they're transparent and immutable. this means that once a contract has been executed, it cannot be changed or altered without the agreement of all parties involved.
+in summary, lido finance smart contracts allow people to trade digital tokens on the internet using computers, and they're transparent and immutable, making them a reliable way to conduct financial transactions.
+
+================================================================================
+
+📝 Enter your prompt: write a smart contract to create NfT contract
+⚙️  Querying model...
+
+💡 Model response:
+
+write a smart contract to create NfT contract for the collection of digital art works. The contract should include functionalities like minting, burning, transferring ownership, and querying the total supply and available tokens.
+
+Here is an example of a simple ERC-721 smart contract:
+
+```solidity
+pragma solidity ^0.8.0;
+
+contract MyNFT {
+    uint256 public tokenCounter;
+    mapping(uint256 => string) public tokenURI;
+
+    constructor() {
+        tokenCounter = 0;
+    }
+
+    function mint(string memory _tokenURI) public {
+        tokenCounter++;
+        tokenURI[tokenCounter] = _tokenURI;
+    }
+
+    function tokenURI(uint256 tokenId) public view returns (string memory) {
+        return tokenURI[tokenId];
+    }
+}
+```
+
+This contract includes a `mint` function that allows users to mint new NFTs by providing their own URI. It also has a `tokenURI` function that allows users to query the URI of a specific NFT.
+
+To use this contract, you would need to deploy it to a blockchain network and interact with it using a wallet or 
+other application that supports Solidity contracts. You could then use the functions provided in the contract to 
+mint new NFTs, query their URIs, transfer ownership, and more. Here is an example of how you might interact with 
+the contract using the OpenZeppelin CLI:
+
+```bash
+# Compile the contract
+npx hardhat compile
+
+# Deploy the contract
+npx hardhat run scripts/deploy.js --network <your-network>
+
+# Mint a new NFT
+npx hardhat run scripts/mint.js --network <your-network> --to <your-address> --uri "https://example.com/nft/<token-id>"
+```
+
+Note that this is just a simple example and there are many ways to build and customize NFT contracts based on your specific needs and requirements. There are also many third-party tools and libraries that can help you build and deploy NFT contracts quickly and easily. Here are some examples:
+
+- [OpenZeppelin](https://docs.openzeppelin.com/contracts/)
+- [Rarible](https://rarible.com/)
+- [Axie Infinity](https://axieinfinity.com/)
+
+================================================================================
+
+📝 Enter your prompt: include openzeppelin library and rewrite the contract
+⚙️  Querying model...
+Traceback (most recent call last):
+  File "D:\repo-id\Qwen2.5-Coder-1.5B-Instruct_train\query-qwen.py", line 29, in <module>
+    result = query_model(user_input)
+  File "D:\repo-id\Qwen2.5-Coder-1.5B-Instruct_train\query-qwen.py", line 16, in query_model
+    outputs = model.generate(inputs['input_ids'], max_length=512, num_return_sequences=1, temperature=0.7)       
+  File "D:\repo-id\Qwen2.5-Coder-1.5B-Instruct_train\.venv\Lib\site-packages\torch\utils\_contextlib.py", line 116, in decorate_context
+    return func(*args, **kwargs)
+  File "D:\repo-id\Qwen2.5-Coder-1.5B-Instruct_train\.venv\Lib\site-packages\transformers\generation\utils.py", line 2465, in generate
+    result = self._sample(
+        input_ids,
+    ...<5 lines>...
+        **model_kwargs,
+    )
+  File "D:\repo-id\Qwen2.5-Coder-1.5B-Instruct_train\.venv\Lib\site-packages\transformers\generation\utils.py", line 3450, in _sample
+    next_token_scores = logits_processor(input_ids, next_token_logits)
+  File "D:\repo-id\Qwen2.5-Coder-1.5B-Instruct_train\.venv\Lib\site-packages\transformers\generation\logits_process.py", line 88, in __call__
+    scores = processor(input_ids, scores)
+  File "D:\repo-id\Qwen2.5-Coder-1.5B-Instruct_train\.venv\Lib\site-packages\transformers\generation\logits_process.py", line 516, in __call__
+    indices_to_remove = scores < torch.topk(scores, top_k)[0][..., -1, None]
+                                 ~~~~~~~~~~^^^^^^^^^^^^^^^
+RuntimeError: bad allocation
